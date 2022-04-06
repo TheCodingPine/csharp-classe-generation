@@ -10,7 +10,7 @@ Testate le vostre funzioni di statistiche, per esempio aggiungendo l'opzione "st
 
 string[] nomiAlunni = new string[10]; //array di stringhe dimensione 10
 string[] cognomiAlunni = new string[10];
-string[] etàAlunni = new string[10];
+string[] etaAlunni = new string[10];
 int partecipantiNow = 0;
 
 //proviamo: voglio salvare l'enumeratore più vecchio, giovane e con più lettere ad ogni aggiunta, per recuperarli poi
@@ -33,19 +33,19 @@ void AggiungiAlunno(string nome, string cognome, string eta)
     {
         nomiAlunni[partecipantiNow] = nome;
         cognomiAlunni[partecipantiNow] = cognome;
-        etàAlunni[partecipantiNow] = Int32.Parse(eta);
+        etaAlunni[partecipantiNow] = eta;
         partecipantiNow++;
     } else
     {
-     
+        Console.WriteLine("Hai raggiunto i dieci iscritti! Rimuovi l'ultimo alunno.");
     }
 }
 
 //rimuoviAlunno
 
-void RimuoviAlunno(string nome, string cognome, string eta)
+void RimuoviAlunno()
 {
-    if (partecipantiNow = 0)
+    if (partecipantiNow == 0)
     {
         Console.WriteLine("Non sono presenti alunni");
     }
@@ -76,17 +76,21 @@ Console.WriteLine("Attualmente la classe è composta da " + partecipantiNow + " 
 
 while (true)
 {
-    Console.Write("Vuoi aggiungere o rimuovere un alunno dalla lista? [aggiungi/rimuovi]");
+    Console.Write("Vuoi aggiungere un alunno dalla lista o rimuovere l'ultimo aggiunto? [aggiungi/rimuovi]");
     string risposta = Console.ReadLine();
 
     switch (risposta)
     {
         case "aggiungi":
             Console.Write("Nome alunno: ");
-            string
-
+            string nome = Console.ReadLine();
+            Console.Write("Cognome alunno: ");
+            string cognome = Console.ReadLine();
+            Console.WriteLine("Età alunno (cifra): ");
+            string eta = Console.ReadLine();
+            AggiungiAlunno(nome, cognome, eta);
             break;
-        case "rimuovi";
+        case "rimuovi":
             RimuoviAlunno();
             break;
         default:
