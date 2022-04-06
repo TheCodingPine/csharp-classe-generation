@@ -1,21 +1,20 @@
 ﻿/* 
-nomi
-cognomi
-eta
-numero di partecipanti attuali nel corso
-
-Testate le vostre funzioni di statistiche, per esempio aggiungendo l'opzione "statistiche" per l'utente, che una volta scritto a console "statistiche" vi stampi i risultati delle funzioni appena dichiarate.
+questo punto volete avere delle statistiche sulla vostra classe, pertanto vi si chiede di
+fornire tramite funzioni le seguenti cose:
+una funzione calcolaEtaMediaClasse che vi restituisca l'età media della classe.
+una funzione EtaPiuGiovane che vi restituisce l'età dell'alunno più giovane in classe.
+una funzione EtàPiuVecchio che vi restituisce l'età dell'alunno più vecchio.
 */
 
 
 string[] nomiAlunni = new string[10]; //array di stringhe dimensione 10
 string[] cognomiAlunni = new string[10];
 string[] etaAlunni = new string[10];
-int indiceDiTutto = 0;
+byte indiceDiTutto = 0;
 
 //proviamo: voglio salvare l'enumeratore più vecchio, giovane e con più lettere ad ogni aggiunta, per recuperarli poi
-int theOldestPartecipante = 0;
-int theYoungestPartecipante = 0;
+byte theOldestPartecipante = 0;
+byte theYoungestPartecipante = 0;
 
 // --------------------------FUNZIONI--------------------------
 
@@ -45,7 +44,7 @@ void AggiungiAlunno(string nome, string cognome, string eta)
 
 void RimuoviAlunno()
 {
-    Console.WriteLine("L'ultimo alunno è " + indiceDiTutto);
+    Console.WriteLine("Rimosso " + nomiAlunni[indiceDiTutto -1] + " " + cognomiAlunni[indiceDiTutto -1]);
     if (indiceDiTutto == 0)
     {
         Console.WriteLine("Non sono presenti alunni");
@@ -53,7 +52,13 @@ void RimuoviAlunno()
     else
     {
         indiceDiTutto--; // i--
-        //sbianca tutto
+        nomiAlunni[indiceDiTutto] = ("");
+        cognomiAlunni[indiceDiTutto] = "";
+        etaAlunni[indiceDiTutto] = "";
+        if (indiceDiTutto != 0)
+        { 
+            Console.WriteLine("Ora l'ultimo alunno è " + nomiAlunni[indiceDiTutto-1] + " " + cognomiAlunni[indiceDiTutto-1]);
+        }
     }
 }
 
@@ -98,7 +103,7 @@ while (true)
             string nome = Console.ReadLine();
             Console.Write("Cognome alunno: ");
             string cognome = Console.ReadLine();
-            Console.WriteLine("Età alunno (cifra): ");
+            Console.Write("Età alunno (cifra): ");
             string eta = Console.ReadLine();
             AggiungiAlunno(nome, cognome, eta);
             break;
