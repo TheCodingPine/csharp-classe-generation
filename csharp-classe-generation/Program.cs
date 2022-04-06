@@ -11,7 +11,7 @@ Testate le vostre funzioni di statistiche, per esempio aggiungendo l'opzione "st
 string[] nomiAlunni = new string[10]; //array di stringhe dimensione 10
 string[] cognomiAlunni = new string[10];
 string[] etaAlunni = new string[10];
-int partecipantiNow = 0;
+int indiceDiTutto = 0;
 
 //proviamo: voglio salvare l'enumeratore più vecchio, giovane e con più lettere ad ogni aggiunta, per recuperarli poi
 int theOldestPartecipante = 0;
@@ -29,12 +29,12 @@ int theYoungestPartecipante = 0;
 
 void AggiungiAlunno(string nome, string cognome, string eta)
 {
-    if (partecipantiNow < 9)        
+    if (indiceDiTutto < 9)        
     {
-        nomiAlunni[partecipantiNow] = nome;
-        cognomiAlunni[partecipantiNow] = cognome;
-        etaAlunni[partecipantiNow] = eta;
-        partecipantiNow++;
+        nomiAlunni[indiceDiTutto] = nome;
+        cognomiAlunni[indiceDiTutto] = cognome;
+        etaAlunni[indiceDiTutto] = eta;
+        indiceDiTutto++;
     } else
     {
         Console.WriteLine("Hai raggiunto i dieci iscritti! Rimuovi l'ultimo alunno.");
@@ -45,14 +45,26 @@ void AggiungiAlunno(string nome, string cognome, string eta)
 
 void RimuoviAlunno()
 {
-    if (partecipantiNow == 0)
+    Console.WriteLine("L'ultimo alunno è " + indiceDiTutto);
+    if (indiceDiTutto == 0)
     {
         Console.WriteLine("Non sono presenti alunni");
     }
     else
     {
-        partecipantiNow--; // i--
+        indiceDiTutto--; // i--
         //sbianca tutto
+    }
+}
+
+
+//cicloFor degli iscritti
+
+void RicapitolandoGliIscritti()
+{
+    for (int i = 0; i < indiceDiTutto; i++)
+    {
+        Console.WriteLine(nomiAlunni[i] + " " + cognomiAlunni[i] + ", di anni " + etaAlunni[i]);
     }
 }
 
@@ -72,11 +84,11 @@ void RimuoviAlunno()
 //---------------------L'ESEGUIBILE----------------------------
 //-------------------------------------------------------------
 
-Console.WriteLine("Attualmente la classe è composta da " + partecipantiNow + " alunni.");
+Console.WriteLine("Attualmente la classe è composta da " + indiceDiTutto + " alunni.");
 
 while (true)
 {
-    Console.Write("Vuoi aggiungere un alunno dalla lista o rimuovere l'ultimo aggiunto? [aggiungi/rimuovi]");
+    Console.Write("Vuoi aggiungere un alunno dalla lista o rimuovere l'ultimo aggiunto? [aggiungi/rimuovi/lista]");
     string risposta = Console.ReadLine();
 
     switch (risposta)
@@ -92,6 +104,10 @@ while (true)
             break;
         case "rimuovi":
             RimuoviAlunno();
+            break;
+        case "lista":
+            Console.WriteLine("Gli iscritti attuali sono: ");
+            RicapitolandoGliIscritti();
             break;
         default:
             Console.WriteLine("Errore di battitura.");
